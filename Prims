@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+        int v=4,no_of_edge=0,min,x,y;
+        int G[v][v]={{0,10,0,5},{10,0,20,0},{0,20,0,15},{5,0,15,0}};
+        int selected[v];
+        for(int i=0;i<v;i++)
+                selected[i]=false;
+        selected[0]=true;
+        while(no_of_edge<v)
+        {
+                x=0; y=0;
+                min=10000;
+                for(int i=0;i<v;i++)
+                {
+                if(selected[i]==true)
+                {
+                        for(int j=0;j<v;j++)
+                                if(selected[j]==false && G[i][j]!=0)
+                                {
+                                        if(min>G[i][j])
+                                        {
+                                                min=G[i][j];
+                                                x=i; y=j;
+                                        }
+                                }
+                }
+                }
+                no_of_edge++;
+                cout<<x+1<<" - "<<y+1<<":"<<G[x][y]<<"\n";
+                selected[y]=true;
+        }
+        return 0;
+}

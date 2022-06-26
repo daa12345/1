@@ -1,0 +1,35 @@
+#include<stdio.h>
+int max,min,max1,min1;
+void maxmin(int a[],int f,int l,int max,int min)
+{
+        int mid;
+        if(f==l)
+                max=min=a[f];
+        else if(f==l-1)
+        {
+                if(max<a[f])
+                        max=a[f];
+                if(min>a[l])
+                        min=a[l];
+        }
+        else
+        {
+                mid=(f+l)/2;
+                maxmin(a,f,mid,max,min);
+                maxmin(a,mid+1,l,max1,min1);
+                if(max1>max)
+                        max=max1;
+                if(min1>min)
+                        min=min1;
+        }
+}
+int main()
+{
+        int a[5]={2,1,3,5,4};
+        min=a[0];
+        max=a[4];
+        max1=a[4];
+        min1=a[3];
+        maxmin(a,0,4,max,min);
+        printf("%d %d",max,min);
+}
